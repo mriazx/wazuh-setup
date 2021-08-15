@@ -27,3 +27,16 @@ Elasticsearch | Ubuntu Server 20.04 | 1GB
 Kibana Dashboard | Kali Linux | 2 GB
 
 In this deployment same Kali Linux used for agent-1 and Kibana.
+
+#### The setep-by-step deployment procedures are described below.
+[Wazuh Manager Setup](https://github.com/mriazx/wazuh-setup/blob/main/wazuh-manager-setup.md)
+
+[Elasticsearch Setup](https://github.com/mriazx/wazuh-setup/blob/main/elasticsearch-setup.md)
+
+[Filebeat Setup](https://github.com/mriazx/wazuh-setup/blob/main/filebeat-setup.md)
+
+[Kibana Setup](https://github.com/mriazx/wazuh-setup/blob/main/kibana-setup.md)
+
+[Wazuh Agent Setup]()
+
+[Security Deployment]()
