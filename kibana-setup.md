@@ -1,4 +1,4 @@
-## Kiban Installation
+## Kibana Installation
 This process will go through the installation of the **Kibana** in a 2 GB RAM **Kali Linux** node.
 
 **Note:** It is recommended to set Static IP address for this node rather than dynamic one.
