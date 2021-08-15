@@ -29,9 +29,9 @@ This process will go through the installation of the **Wazuh Manager** in a 1 GB
 ```
 2. Enable and start the Wazuh Manager service:
 ```shell
-systemctl daemon-reload
-systemctl enable wazuh-manager
-systemctl start wazuh-manager
+# systemctl daemon-reload
+# systemctl enable wazuh-manager
+# systemctl start wazuh-manager
 ```
 3. Run the following command to check if the Wazuh Manager is active:
 ```shell
