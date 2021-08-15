@@ -23,21 +23,21 @@ This process will go through the installation of the **Wazuh Manager** in a 1 GB
 # apt update
 ```
 ### Installing the Wazuh manager
-1. Install the Wazuh manager package:
+1. Install the Wazuh Manager package:
 ```shell
 # apt install wazuh-manager
 ```
-2. Enable and start the Wazuh manager service:
+2. Enable and start the Wazuh Manager service:
 ```shell
 systemctl daemon-reload
 systemctl enable wazuh-manager
 systemctl start wazuh-manager
 ```
-3. Run the following command to check if the Wazuh manager is active:
+3. Run the following command to check if the Wazuh Manager is active:
 ```shell
 # systemctl status wazuh-manager
 ```
-### Disabling Wazuh updates
+### Disabling Wazuh Repositories
 It is recommended to disabling the Wazuh repository to prevent accidental upgrades. To do so, use the following command:
 ```shell
 # sed -i "s/^deb/#deb/" /etc/apt/sources.list.d/wazuh.list
