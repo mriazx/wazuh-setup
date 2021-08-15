@@ -1,7 +1,10 @@
 ## Wazuh Manager Installation
 This process will go through the installation of the **Wazuh Manager** in a 1 GB RAM **Ubuntu Server 20.04** node.
 
+**Note:** It is recommended to set Static IP address for this node rather than static one.
+
 **Note:** Root user privileges are required to execute all the following commands.
+
 ### Adding the Wazuh repository
 1. Install the necessary packages for the installation:
 ```shell
@@ -34,10 +37,11 @@ systemctl start wazuh-manager
 ```shell
 # systemctl status wazuh-manager
 ```
-**Note:** It is recommended to disabling the Wazuh repository to prevent accidental upgrades. To do so, use the following command:
+### Disabling Wazuh updates
+It is recommended to disabling the Wazuh repository to prevent accidental upgrades. To do so, use the following command:
 ```shell
 # sed -i "s/^deb/#deb/" /etc/apt/sources.list.d/wazuh.list
-# apt-get update
+# apt update
 ```
 ### Miscellaneous
 1. Allowing ports in firewall:
