@@ -125,3 +125,5 @@ It is recommended to disabling the Elasticsearch repository to prevent accidenta
 ```shell
 # ss -lntp
 ```
+
+**NEXT:** [Filebeat Installation](../filebeat-setup)
