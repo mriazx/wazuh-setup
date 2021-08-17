@@ -46,7 +46,7 @@ xpack.security.transport.ssl.enabled: true
 xpack.security.transport.ssl.verification_mode: certificate
 xpack.security.transport.ssl.key: /etc/elasticsearch/certs/elasticsearch.key
 xpack.security.transport.ssl.certificate: /etc/elasticsearch/certs/elasticsearch.crt
-xpack.security.transport.ssl.certificate_authorities: /etc/elasticsearch/certs/ca/ca>
+xpack.security.transport.ssl.certificate_authorities: /etc/elasticsearch/certs/ca/ca.crt
 
 # HTTP layer
 xpack.security.http.ssl.enabled: true
@@ -72,7 +72,7 @@ cluster.initial_master_nodes: node-1
 #xpack.security.transport.ssl.verification_mode: certificate
 #xpack.security.transport.ssl.key: /etc/elasticsearch/certs/elasticsearch.key
 #xpack.security.transport.ssl.certificate: /etc/elasticsearch/certs/elasticsearch.crt
-#xpack.security.transport.ssl.certificate_authorities: /etc/elasticsearch/certs/ca/ca>
+#xpack.security.transport.ssl.certificate_authorities: /etc/elasticsearch/certs/ca/ca.crt
 
 # HTTP layer
 #xpack.security.http.ssl.enabled: true
