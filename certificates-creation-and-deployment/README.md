@@ -223,3 +223,5 @@ user: elastic
 password: pA$$w0rd
 ```
 Replace the `URL` with your Kibana mechine IP and `password` with your password generated in Elasticsearch Certificate generation process.
+
+[Next](../kibana-setup)
