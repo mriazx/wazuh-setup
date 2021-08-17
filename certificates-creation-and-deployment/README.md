@@ -185,7 +185,7 @@ elasticsearch: https://10.0.2.11:9200...
   version: 7.11.2
 ```
 
-### Kibana Certificates and Authentication Deployment
+## Kibana Certificates and Authentication Deployment
 
 **Caution:** Do not enter following commands in root privilege. Use User previlege(`$`).
 
