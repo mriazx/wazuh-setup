@@ -16,7 +16,9 @@ instances:
   ip:
   - "10.0.2.10"
 ```
-  Replace the IPs with the corresponding IP addresses for each instance in your environment.
+
+Replace the IPs with the corresponding IP addresses for each instance in your environment.
+
   
 2. Create the certificates using the elasticsearch-certutil tool:
 ```shell
@@ -38,7 +40,9 @@ instances:
 ```shell
 # nano /etc/elasticsearch/elasticsearch.yml
 ```
-  Uncomment all of `Transport layer`, `HTTP layer` and `Elasticsearch authentication` sections. Updated file should like this:
+
+Uncomment all of `Transport layer`, `HTTP layer` and `Elasticsearch authentication` sections. Updated file should like this:
+
 ```yml
 network.host: 10.0.2.11
 node.name: node-1
@@ -64,6 +68,7 @@ xpack.security.enabled: true
 path.data: /var/lib/elasticsearch
 path.logs: /var/log/elasticsearch
 ```
+
 6. Restart the Elasticsearch service:
 ```shell
 # systemctl restart elasticsearch
@@ -76,7 +81,9 @@ path.logs: /var/log/elasticsearch
 ```shell
 # /usr/share/elasticsearch/bin/elasticsearch-setup-passwords interactive
 ```
-  The command above will prompt an output like this. Provide a password for each user and save the password of the `elastic` user for further steps. I use `pA$$w0rd` as a password which I'll use for further steps. 
+
+The command above will prompt an output like this. Provide a password for each user and save the password of the `elastic` user for further steps. I use `pA$$w0rd` as a password which I'll use for further steps.
+
 ```shell
 Changed password for user [apm_system]
 Changed password for user [kibana_system]
@@ -86,6 +93,7 @@ Changed password for user [beats_system]
 Changed password for user [remote_monitoring_user]
 Changed password for user [elastic]
 ```
+
 9. Copy `~/certs/ca` and `~certs/filebeat` to **Filebeat** deployment:
 ```shell
 # scp -r ~/certs/ca ~/certs/filebeat ubuntu@10.0.2.15:~/
@@ -108,7 +116,9 @@ $ sudo chmod 400 /etc/filebeat/certs/ca/ca.* /etc/filebeat/certs/filebeat.*
 ```shell
 $ sudo nano /etc/filebeat/filebeat.yml
 ```
-  Replace `elasticsearch_password` with the password we generated above and update protocol to 'https' from 'http'. Then uncomment authentication and certification. Updated file should like this:
+
+Replace `elasticsearch_password` with the password we generated above and update protocol to 'https' from 'http'. Then uncomment authentication and certification. Updated file should like this:
+
 ```yml
 # Wazuh - Filebeat configuration file
 output.elasticsearch.hosts: 10.0.2.11:9200
