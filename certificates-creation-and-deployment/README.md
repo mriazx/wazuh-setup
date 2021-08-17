@@ -1,4 +1,4 @@
-### Configure Elasticsearch certificate
+### Configure Elasticsearch Certificate and Authentication
 1. The instances file can be created `/usr/share/elasticsearch/instances.yml` as follows:
 ```bash
 # nano /usr/share/elasticsearch/instances.yml
@@ -96,8 +96,11 @@ Changed password for user [elastic]
 # scp -r ~/certs/ca ~certs/kibana kali@10.0.2.11:~/
 ```
 
-### Configure Filebeat certificate
-In previous section we copy `~/certs/ca` and `~certs/filebeat` to **Filebeat** deployment. The files must be copied into the **Wazuh Manager's** user home directory(`~/`).
+### Configure Filebeat Certificate and Authentication
+
+**Caution:** Do not enter following commands in root privilege. Use User previlege(`$`).
+
+In **Configure Elasticsearch Certificate and Authentication** section we copy `~/certs/ca` and `~certs/filebeat` to **Filebeat** deployment. The files must be copied into the **Wazuh Manager's** user home directory(`~/`).
 
 1. Create the directory `/etc/filebeat/certs`, and then copy the certificate authorities, the certificate and key there:
 ```shell
@@ -163,8 +166,11 @@ elasticsearch: https://10.0.2.11:9200...
   version: 7.11.2
 ```
 
-### Configure Kibana certificate
-In previous section we copy `~/certs/ca` and `~certs/kibana` to **Kibana** deployment. The files must be copied into the **Kibana's** user home directory(`~/`).
+### Configure Kibana Certificate and Authentication
+
+**Caution:** Do not enter following commands in root privilege. Use User previlege(`$`).
+
+In **Configure Elasticsearch Certificate and Authentication** section we copy `~/certs/ca` and `~certs/kibana` to **Kibana** deployment. The files must be copied into the **Kibana's** user home directory(`~/`).
   
 1. Create the directory `/etc/kibana/certs`, and then copy the certificate authorities, the certificate and key there:
 ```shell
@@ -177,12 +183,13 @@ $ sudo chmod 400 /etc/kiana/certs/ca/ca.* /etc/kibana/certs/kibana.*
 ```shell
 $ sudo nano /etc/kibana/kibana.yml
 ```
-Update `server.port` with `443`and `elasticsearch.hosts` with `https`. Replace `elasticsearch_password` with the password we generated above. Uncomment all other sections. Updated file should like this.
+Update `server.port` with `443`and `elasticsearch.hosts` with `https`. Replace `elasticsearch_password` with the password we generated above. Uncomment all other sections. Updated file should like this:
+
 ```bash
 server.host: 10.0.2.10
-server.port: 8080
+server.port: 443
 elasticsearch.hosts: http://10.0.2.11:9200
-elasticsearch.password: <elasticsearch_password>
+elasticsearch.password: pA$$w0rd
 
 # Elasticsearch from/to Kibana
 
@@ -205,7 +212,14 @@ elasticsearch.ssl.verificationMode: certificate
 ```bash
 $ sudo systemctl restart Kibana
 ```
-4. To ensure that Filebeat has been successfully installed, run the following command:
+4. To ensure that Kibana has been successfully installed, run the following command:
 ```bash
 $ sudo systemctl status Kibana
 ```
+4. Access the web interface using the password generated during the Elasticsearch installation process:
+```bash
+URL: https://10.0.2.10
+user: elastic
+password: pA$$w0rd
+```
+Replace the `URL` with your Kibana mechine IP and `password` with your password generated in Elasticsearch Certificate generation process.
