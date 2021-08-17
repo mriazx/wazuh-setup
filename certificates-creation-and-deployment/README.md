@@ -3,8 +3,8 @@
 ```bash
 # nano /usr/share/elasticsearch/instances.yml
 ```
-  The file should like:
-```yml
+The file should like:
+```bash
 instances:
 - name: "elasticsearch"
   ip:
@@ -16,10 +16,7 @@ instances:
   ip:
   - "10.0.2.10"
 ```
-
 Replace the IPs with the corresponding IP addresses for each instance in your environment.
-
-  
 2. Create the certificates using the elasticsearch-certutil tool:
 ```shell
 # /usr/share/elasticsearch/bin/elasticsearch-certutil cert ca --pem --in instances.yml --keep-ca-key --out ~/certs.zip
@@ -40,10 +37,9 @@ Replace the IPs with the corresponding IP addresses for each instance in your en
 ```shell
 # nano /etc/elasticsearch/elasticsearch.yml
 ```
-
 Uncomment all of `Transport layer`, `HTTP layer` and `Elasticsearch authentication` sections. Updated file should like this:
 
-```yml
+```bash
 network.host: 10.0.2.11
 node.name: node-1
 cluster.initial_master_nodes: node-1
@@ -68,7 +64,6 @@ xpack.security.enabled: true
 path.data: /var/lib/elasticsearch
 path.logs: /var/log/elasticsearch
 ```
-
 6. Restart the Elasticsearch service:
 ```shell
 # systemctl restart elasticsearch
@@ -81,7 +76,6 @@ path.logs: /var/log/elasticsearch
 ```shell
 # /usr/share/elasticsearch/bin/elasticsearch-setup-passwords interactive
 ```
-
 The command above will prompt an output like this. Provide a password for each user and save the password of the `elastic` user for further steps. I use `pA$$w0rd` as a password which I'll use for further steps.
 
 ```shell
@@ -93,7 +87,6 @@ Changed password for user [beats_system]
 Changed password for user [remote_monitoring_user]
 Changed password for user [elastic]
 ```
-
 9. Copy `~/certs/ca` and `~certs/filebeat` to **Filebeat** deployment:
 ```shell
 # scp -r ~/certs/ca ~/certs/filebeat ubuntu@10.0.2.15:~/
@@ -104,7 +97,8 @@ Changed password for user [elastic]
 ```
 
 ### Configure Filebeat certificate
-  In previous section we copy `~/certs/ca` and `~certs/filebeat` to **Filebeat** deployment. The files must be copied into the **Wazuh Manager's** user home directory(`~/`).
+In previous section we copy `~/certs/ca` and `~certs/filebeat` to **Filebeat** deployment. The files must be copied into the **Wazuh Manager's** user home directory(`~/`).
+
 1. Create the directory `/etc/filebeat/certs`, and then copy the certificate authorities, the certificate and key there:
 ```shell
 $ sudo mkdir /etc/filebeat/certs/ca -p
@@ -148,11 +142,11 @@ $ sudo systemctl restart filebeat
 ```
 4. To ensure that Filebeat has been successfully installed, run the following command:
 ```shell
-# sudo filebeat test output
+$ sudo filebeat test output
 ```
 The output should like:
 
-```bash
+```
 elasticsearch: https://10.0.2.11:9200...
   parse url... OK
   connection...
@@ -170,7 +164,8 @@ elasticsearch: https://10.0.2.11:9200...
 ```
 
 ### Configure Kibana certificate
-  In previous section we copy `~/certs/ca` and `~certs/kibana` to **Kibana** deployment. The files must be copied into the **Kibana's** user home directory(`~/`).
+In previous section we copy `~/certs/ca` and `~certs/kibana` to **Kibana** deployment. The files must be copied into the **Kibana's** user home directory(`~/`).
+  
 1. Create the directory `/etc/kibana/certs`, and then copy the certificate authorities, the certificate and key there:
 ```shell
 $ sudo mkdir /etc/kibana/certs/ca -p
