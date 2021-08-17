@@ -31,14 +31,14 @@ We will deploy a basic wazuh **SIEM** solution in VirtualBox as bleow.
 In this deployment same Kali Linux used for agent-1 and Kibana.
 
 #### The setep-by-step deployment procedures are described below.
-- [Wazuh Manager Setup](https://github.com/mriazx/wazuh-setup/tree/main/wazuh-manager-setup)
+- [Wazuh Manager Setup](./wazuh-manager-setup)
 
-- [Elasticsearch Setup](https://github.com/mriazx/wazuh-setup/tree/main/elasticsearch-setup)
+- [Elasticsearch Setup](/elasticsearch-setup)
 
-- [Filebeat Setup](https://github.com/mriazx/wazuh-setup/tree/main/filebeat-setup)
+- [Filebeat Setup](/filebeat-setup)
 
-- [Kibana Setup](https://github.com/mriazx/wazuh-setup/tree/main/kibana-setup)
+- [Kibana Setup](/kibana-setup)
 
-- [Wazuh Agent Setup](https://github.com/mriazx/wazuh-setup/tree/main/wazuh-agent-setup)
+- [Wazuh Agent Setup](/wazuh-agent-setup)
 
-- [Certificates Creation and Deployment](https://github.com/mriazx/wazuh-setup/tree/main/certificates-creation-and-deployment)
+- [Certificates Creation and Deployment](/certificates-creation-and-deployment)
