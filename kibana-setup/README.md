@@ -36,7 +36,8 @@ This process will go through the installation of the **Kibana** in a 2 GB RAM **
 # nano /etc/kibana/kibana.yml
 ```
 It will look like this:
-```shell
+
+```yml
 server.host: <kibana_ip>
 server.port: 443
 elasticsearch.hosts: https://<elasticsearch_DN>:9200
@@ -59,8 +60,10 @@ elasticsearch.username: elastic
 uiSettings.overrides.defaultRoute: "/app/wazuh"
 elasticsearch.ssl.verificationMode: certificate
 ```
+
 Replace `kibana_ip` with Kibana’s host IP and `elasticsearch_DN` with Elasticsearch's host IP. Update `server.port` with `8080`and `elasticsearch.hosts` with `http`. Comment out all other sections. Updated file should like this:
-```shell
+
+```yml
 server.host: 10.0.2.10
 server.port: 8080
 elasticsearch.hosts: http://10.0.2.11:9200
@@ -83,6 +86,7 @@ elasticsearch.hosts: http://10.0.2.11:9200
 #uiSettings.overrides.defaultRoute: "/app/wazuh"
 #elasticsearch.ssl.verificationMode: certificate
 ```
+
 4. Create the /usr/share/kibana/data directory:
 ```shell
 # mkdir /usr/share/kibana/data
