@@ -16,6 +16,7 @@ This process will go through the installation of the **Filebeat** in a 1 GB RAM 
 ```shell
 # apt update
 ```
+
 ### Filebeat installation and configuration
 1. Install the Filebeat package:
 ```shell
@@ -39,7 +40,8 @@ This process will go through the installation of the **Filebeat** in a 1 GB RAM 
 nano /etc/filebeat/filebeat.yml
 ```
 It will look like this:
-```yml
+
+```console
 # Wazuh - Filebeat configuration file
 output.elasticsearch.hosts: <elasticsearch_ip>:9200
 output.elasticsearch.password: <elasticsearch_password>
@@ -63,8 +65,10 @@ output.elasticsearch.ssl.key: /etc/filebeat/certs/filebeat.key
 output.elasticsearch.ssl.certificate_authorities: /etc/filebeat/certs/ca/ca.crt
 output.elasticsearch.username: elastic
 ```
+
 Replace elasticsearch_ip with the IP address or the hostname of the Elasticsearch server and update protocol to 'http' from 'https'. Then comment out authentication and certification. We will do it later. Updated file should like this:
-```yml
+
+```shell
 # Wazuh - Filebeat configuration file
 output.elasticsearch.hosts: 10.0.2.11:9200
 #output.elasticsearch.password: <elasticsearch_password>
@@ -88,6 +92,7 @@ output.elasticsearch.protocol: http
 #output.elasticsearch.ssl.certificate_authorities: /etc/filebeat/certs/ca/ca.crt
 #output.elasticsearch.username: elastic
 ```
+
 6. Enable and start the Filebeat service:
 ```shell
 # systemctl daemon-reload
@@ -98,8 +103,10 @@ output.elasticsearch.protocol: http
 ```shell
 # filebeat test output
 ```
+
 An example response should look as follows:
-```
+
+```consol
 elasticsearch: http://10.0.2.11:9200...
   parse url... OK
   connection...
@@ -109,6 +116,7 @@ elasticsearch: http://10.0.2.11:9200...
     dial up... OK
   version: 7.11.2
 ```
+
 ### Disabling Filebeat repositories
 It is recommended to disabling the Filebeat repository to prevent accidental upgrades. To do so, use the following command:
 ```shell
