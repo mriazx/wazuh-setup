@@ -119,7 +119,7 @@ Changed password for user [elastic]
 
 **Caution:** Do not enter following commands in root privilege. Use User previlege(`$`).
 
-In [Copying Filebeat and Kibana Certificates to their instances](./#Copying Filebeat and Kibana Certificates to their instances) section we copy `~/certs/ca` and `~certs/filebeat` to **Filebeat** deployment. The files must be copied into the **Wazuh Manager's** user home directory(`~/`).
+In [Copying Filebeat and Kibana Certificates to their instances](#copying-filebeat-and-kibana-certificates-to-their-instances) section we copy `~/certs/ca` and `~certs/filebeat` to **Filebeat** deployment. The files must be copied into the **Wazuh Manager's** user home directory(`~/`).
 
 1. Create the directory `/etc/filebeat/certs`, and then copy the certificate authorities, the certificate and key there:
 ```shell
@@ -189,7 +189,7 @@ elasticsearch: https://10.0.2.11:9200...
 
 **Caution:** Do not enter following commands in root privilege. Use User previlege(`$`).
 
-In [Copying Filebeat and Kibana Certificates to their instances](./#Copying Filebeat and Kibana Certificates to their instances) section we copy `~/certs/ca` and `~certs/kibana` to **Kibana** deployment. The files must be copied into the **Kibana's** user home directory(`~/`).
+In [Copying Filebeat and Kibana Certificates to their instances](#copying-filebeat-and-kibana-certificates-to-their-instances) section we copy `~/certs/ca` and `~certs/kibana` to **Kibana** deployment. The files must be copied into the **Kibana's** user home directory(`~/`).
   
 1. Create the directory `/etc/kibana/certs`, and then copy the certificate authorities, the certificate and key there:
 ```shell
