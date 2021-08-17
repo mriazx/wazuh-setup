@@ -6,6 +6,7 @@ This process will go through the installation of the **Elasticsearch** in a 1 GB
 **Note:** Root user privileges are required to execute all the following commands.
 
 ### Adding the Elastic Stack repository
+
 1. Install the necessary packages for the installation:
 ```shell
 # apt-get install lsb-release curl apt-transport-https zip unzip gnupg2
@@ -22,7 +23,9 @@ This process will go through the installation of the **Elasticsearch** in a 1 GB
 ```shell
 # apt update
 ```
+
 ### Elasticsearch installation and configuration
+
 1. Install the Elasticsearch package:
 ```shell
 # apt install elasticsearch=7.11.2
@@ -35,7 +38,9 @@ This process will go through the installation of the **Elasticsearch** in a 1 GB
 ```shell
 # nano /etc/elasticsearch/elasticsearch.yml
 ```
+
 It will look like this:
+
 ```yml
 network.host: 0.0.0.0
 node.name: node-1
@@ -61,8 +66,10 @@ xpack.security.enabled: true
 path.data: /var/lib/elasticsearch
 path.logs: /var/log/elasticsearch
 ```
+
 Replace the `network.host` IP with your mechine IP and comment out all of `Transport layer`, `HTTP layer` and `Elasticsearch authentication` sections. Updated file should like this:
-```yml
+
+```console
 network.host: 10.0.2.11
 node.name: node-1
 cluster.initial_master_nodes: node-1
@@ -87,6 +94,7 @@ cluster.initial_master_nodes: node-1
 path.data: /var/lib/elasticsearch
 path.logs: /var/log/elasticsearch
 ```
+
 4. Enable and start the Elasticsearch service:
 ```shell
 # systemctl daemon-reload
@@ -97,13 +105,18 @@ path.logs: /var/log/elasticsearch
 ```shell
 # systemctl status elasticsearch
 ```
+
 ### Disabling Elasticsearch repositories
+
 It is recommended to disabling the Elasticsearch repository to prevent accidental upgrades. To do so, use the following command:
+
 ```shell
 # sed -i "s/^deb/#deb/" /etc/apt/sources.list.d/elastic-7.x.list
 # apt update
 ```
+
 ### Miscellaneous
+
 1. Allowing ports in firewall:
 ```shell
 # ufw allow 9200
