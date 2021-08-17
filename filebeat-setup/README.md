@@ -121,3 +121,5 @@ It is recommended to disabling the Filebeat repository to prevent accidental upg
 # sed -i "s/^deb/#deb/" /etc/apt/sources.list.d/elastic-7.x.list
 # apt update
 ```
+
+**NEXT:** [Kibana Installation](../kibana-setup)
