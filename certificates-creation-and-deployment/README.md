@@ -177,7 +177,7 @@ $ sudo chmod 400 /etc/kiana/certs/ca/ca.* /etc/kibana/certs/kibana.*
 ```shell
 $ sudo nano /etc/kibana/kibana.yml
 ```
-Update `server.port` with `443`and `elasticsearch.hosts` with `https`. Replace `elasticsearch_password` with the password we generated above. Uncomment all other sections. Updated file should like this:
+Update `server.port` with `443`and `elasticsearch.hosts` with `https`. Replace `elasticsearch_password` with the password we generated above. Uncomment all other sections. Updated file should like this.
 ```bash
 server.host: 10.0.2.10
 server.port: 8080
