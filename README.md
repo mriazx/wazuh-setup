@@ -33,12 +33,12 @@ In this deployment same Kali Linux used for agent-1 and Kibana.
 #### The setep-by-step deployment procedures are described below.
 - [Wazuh Manager Setup](./wazuh-manager-setup)
 
-- [Elasticsearch Setup](/elasticsearch-setup)
+- [Elasticsearch Setup](./elasticsearch-setup)
 
-- [Filebeat Setup](/filebeat-setup)
+- [Filebeat Setup](./filebeat-setup)
 
-- [Kibana Setup](/kibana-setup)
+- [Kibana Setup](./kibana-setup)
 
-- [Wazuh Agent Setup](/wazuh-agent-setup)
+- [Wazuh Agent Setup](./wazuh-agent-setup)
 
-- [Certificates Creation and Deployment](/certificates-creation-and-deployment)
+- [Certificates Creation and Deployment](./certificates-creation-and-deployment)
