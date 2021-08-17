@@ -22,6 +22,7 @@ This process will go through the installation of the **Wazuh Manager** in a 1 GB
 ```shell
 # apt update
 ```
+
 ### Installing the Wazuh manager
 1. Install the Wazuh Manager package:
 ```shell
@@ -37,12 +38,14 @@ This process will go through the installation of the **Wazuh Manager** in a 1 GB
 ```shell
 # systemctl status wazuh-manager
 ```
+
 ### Disabling Wazuh Repositories
 It is recommended to disabling the Wazuh repository to prevent accidental upgrades. To do so, use the following command:
 ```shell
 # sed -i "s/^deb/#deb/" /etc/apt/sources.list.d/wazuh.list
 # apt update
 ```
+
 ### Miscellaneous
 1. Allowing ports in firewall:
 ```shell
