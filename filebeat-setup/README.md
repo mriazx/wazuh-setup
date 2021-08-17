@@ -40,7 +40,6 @@ This process will go through the installation of the **Filebeat** in a 1 GB RAM 
 nano /etc/filebeat/filebeat.yml
 ```
 It will look like this:
-
 ```console
 # Wazuh - Filebeat configuration file
 output.elasticsearch.hosts: <elasticsearch_ip>:9200
