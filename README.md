@@ -31,14 +31,14 @@ We will deploy a basic wazuh **SIEM** solution in VirtualBox as bleow.
 In this deployment same Kali Linux used for agent-1 and Kibana.
 
 #### The setep-by-step deployment procedures are described below.
-- [Wazuh Manager Setup](https://github.com/mriazx/wazuh-setup/blob/main/wazuh-manager-setup.md)
+- [Wazuh Manager Setup](https://https://github.com/mriazx/wazuh-setup/tree/main/wazuh-manager-setup)
 
-- [Elasticsearch Setup](https://github.com/mriazx/wazuh-setup/blob/main/elasticsearch-setup.md)
+- [Elasticsearch Setup](https://github.com/mriazx/wazuh-setup/tee/main/elasticsearch-setup)
 
-- [Filebeat Setup](https://github.com/mriazx/wazuh-setup/blob/main/filebeat-setup.md)
+- [Filebeat Setup](https://github.com/mriazx/wazuh-setup/tee/main/filebeat-setup)
 
-- [Kibana Setup](https://github.com/mriazx/wazuh-setup/blob/main/kibana-setup.md)
+- [Kibana Setup](https://github.com/mriazx/wazuh-setup/tee/main/kibana-setup)
 
-- [Wazuh Agent Setup](https://github.com/mriazx/wazuh-setup/blob/main/wazuh-agent-setup.md)
+- [Wazuh Agent Setup](https://github.com/mriazx/wazuh-setup/tee/main/wazuh-agent-setup)
 
-- [Certificates Creation and Deployment](https://github.com/mriazx/wazuh-setup/blob/main/certificates-creation-and-deployment.md)
+- [Certificates Creation and Deployment](https://github.com/mriazx/wazuh-setup/tee/main/certificates-creation-and-deployment)
