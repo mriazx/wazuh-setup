@@ -20,6 +20,7 @@ This process will go through the installation of the **Wazuh Agent** in a 1 GB R
 ```shell
 # apt update
 ```
+
 ### Installing the Wazuh Agents
 1. Install the Wazuh Agent package:
 ```shell
@@ -36,12 +37,14 @@ Replace the IP with your **Wazuh Manager's** host IP.
 ```shell
 # systemctl status wazuh-agent
 ```
+
 ### Disabling Wazuh Repository
 It is recommended to disabling the Wazuh repository to prevent accidental upgrades. To do so, use the following command:
 ```shell
 # sed -i "s/^deb/#deb/" /etc/apt/sources.list.d/wazuh.list
 # apt update
 ```
+
 ## Wazuh Agent Installation in Windows
 This process will go through the installation of the **Wazuh Agent** in a 512 MB **Windows XP** node. But the same process will be applicable to the later versions.
 
@@ -60,6 +63,7 @@ wazuh-agent-4.1.5-1.msi /q WAZUH_MANAGER="10.0.2.15" WAZUH_REGISTRATION_SERVER="
 Replace the IP with your **Wazuh Manager's** host IP.
 
 By default, all agent files are stored in `C:\Program Files (x86)\ossec-agent` after the installation.
+
 
 ### Miscellaneous
 Now go to the host where **Wazuh Manager** installed and run this command
