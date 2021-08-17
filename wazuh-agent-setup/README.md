@@ -79,3 +79,5 @@ Now go to the host where **Wazuh Manager** installed and run this command
 ```shell
 # sudo tail -f /var/ossec/logs/alerts/alerts.log
 ```
+
+**NEXT:** [Certificates and Authentication Deployment](../certificates-creation-and-deployment)
