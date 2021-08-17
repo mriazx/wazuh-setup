@@ -1,4 +1,13 @@
-### Configure Elasticsearch Certificate and Authentication
+# Certificates and Authentication Deployment
+Now we will deploy certificate in Elasticsearch, Filebeat and Kibana instances. Then we will setup authentication for secure access.
+
+The native elasticsearch-certutil tool has been used to create certificates, but any other certificates creation method, for example using [OpenSSL](https://www.openssl.org/), can be used. First, we will creat certificates in Elasticsearch instance and then copy Filebeat and Kibana certificates to those instances by using `scp` utility.
+
+## Certificates Creation
+This process is for Wazuh single node cluster. For Certificate deployment the instances file `/usr/share/elasticsearch/instances.yml` must be created.
+
+**Note:** Root user privileges are required to execute all the following commands.
+
 1. The instances file can be created `/usr/share/elasticsearch/instances.yml` as follows:
 ```bash
 # nano /usr/share/elasticsearch/instances.yml
@@ -17,15 +26,33 @@ instances:
   - "10.0.2.10"
 ```
 Replace the IPs with the corresponding IP addresses for each instance in your environment.
+
 2. Create the certificates using the elasticsearch-certutil tool:
 ```shell
 # /usr/share/elasticsearch/bin/elasticsearch-certutil cert ca --pem --in instances.yml --keep-ca-key --out ~/certs.zip
 ```
+The resulting file `certs.zip` contains a directory for each instance included in `instances.yml`. Each directory contains a certificate and a private key necessary to secure communications.
+
 3. Unzip the `~/certs.zip` file:
 ```shell
 # unzip ~/certs.zip -d ~/certs
 ```
-4. Create the directory `/etc/elasticsearch/certs`, and then copy the certificate authorities, the certificate and key there:
+
+### Copying Filebeat and Kibana Certificates to their instances
+1. Copy `~/certs/ca` and `~/certs/filebeat` to **Filebeat** deployment:
+```shell
+# scp -r ~/certs/ca ~/certs/filebeat ubuntu@10.0.2.15:~/
+```
+Change the credentials for your **Filebeat** host as `<user>@<host-IP>`.
+
+2. Copy `~/certs/ca` and `~/certs/kibana` to **Kibana** deployment:
+```shell
+# scp -r ~/certs/ca ~certs/kibana kali@10.0.2.11:~/
+```
+Change the credentials for your **Kibana** host as `<user>@<host-IP>`.
+
+## Elasticsearch Certificates and Authentication Deployment
+1. Create the directory `/etc/elasticsearch/certs`, and then copy the certificate authorities, the certificate and key there:
 ```shell
 # mkdir /etc/elasticsearch/certs/ca -p
 # cp -R ~/certs/ca/ ~/certs/elasticsearch/* /etc/elasticsearch/certs/
@@ -33,7 +60,7 @@ Replace the IPs with the corresponding IP addresses for each instance in your en
 # chmod -R 500 /etc/elasticsearch/certs
 # chmod 400 /etc/elasticsearch/certs/ca/ca.* /etc/elasticsearch/certs/elasticsearch.*
 ```
-5. Edit the file `/etc/elasticsearch/elasticsearch.yml`:
+2. Edit the file `/etc/elasticsearch/elasticsearch.yml`:
 ```shell
 # nano /etc/elasticsearch/elasticsearch.yml
 ```
@@ -64,15 +91,15 @@ xpack.security.enabled: true
 path.data: /var/lib/elasticsearch
 path.logs: /var/log/elasticsearch
 ```
-6. Restart the Elasticsearch service:
+3. Restart the Elasticsearch service:
 ```shell
 # systemctl restart elasticsearch
 ```
-7. Run the following command to check if the Elasticsearch is active:
+4. Run the following command to check if the Elasticsearch is active:
 ```shell
 # systemctl status elasticsearch
 ```
-8. Generate credentials for all the Elastic Stack pre-built roles and users:
+5. Generate credentials for all the Elastic Stack pre-built roles and users:
 ```shell
 # /usr/share/elasticsearch/bin/elasticsearch-setup-passwords interactive
 ```
@@ -87,20 +114,12 @@ Changed password for user [beats_system]
 Changed password for user [remote_monitoring_user]
 Changed password for user [elastic]
 ```
-9. Copy `~/certs/ca` and `~certs/filebeat` to **Filebeat** deployment:
-```shell
-# scp -r ~/certs/ca ~/certs/filebeat ubuntu@10.0.2.15:~/
-```
-10. Copy `~/certs/ca` and `~/certs/kibana` to **Kibana** deployment:
-```shell
-# scp -r ~/certs/ca ~certs/kibana kali@10.0.2.11:~/
-```
 
-### Configure Filebeat Certificate and Authentication
+## Filebeat Certificates and Authentication Deployment
 
 **Caution:** Do not enter following commands in root privilege. Use User previlege(`$`).
 
-In **Configure Elasticsearch Certificate and Authentication** section we copy `~/certs/ca` and `~certs/filebeat` to **Filebeat** deployment. The files must be copied into the **Wazuh Manager's** user home directory(`~/`).
+In [Copying Filebeat and Kibana Certificates to their instances](./#Copying Filebeat and Kibana Certificates to their instances) section we copy `~/certs/ca` and `~certs/filebeat` to **Filebeat** deployment. The files must be copied into the **Wazuh Manager's** user home directory(`~/`).
 
 1. Create the directory `/etc/filebeat/certs`, and then copy the certificate authorities, the certificate and key there:
 ```shell
@@ -166,11 +185,11 @@ elasticsearch: https://10.0.2.11:9200...
   version: 7.11.2
 ```
 
-### Configure Kibana Certificate and Authentication
+### Kibana Certificates and Authentication Deployment
 
 **Caution:** Do not enter following commands in root privilege. Use User previlege(`$`).
 
-In **Configure Elasticsearch Certificate and Authentication** section we copy `~/certs/ca` and `~certs/kibana` to **Kibana** deployment. The files must be copied into the **Kibana's** user home directory(`~/`).
+In [Copying Filebeat and Kibana Certificates to their instances](./#Copying Filebeat and Kibana Certificates to their instances) section we copy `~/certs/ca` and `~certs/kibana` to **Kibana** deployment. The files must be copied into the **Kibana's** user home directory(`~/`).
   
 1. Create the directory `/etc/kibana/certs`, and then copy the certificate authorities, the certificate and key there:
 ```shell
@@ -224,4 +243,4 @@ password: pA$$w0rd
 ```
 Replace the `URL` with your Kibana mechine IP and `password` with your password generated in Elasticsearch Certificate generation process.
 
-[Next](./#configure-elasticsearch-certificate-and-authentication)
+
