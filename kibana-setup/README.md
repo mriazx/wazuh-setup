@@ -128,3 +128,5 @@ It is recommended to disabling the Kibana repository to prevent accidental upgra
 # sed -i "s/^deb/#deb/" /etc/apt/sources.list.d/elastic-7.x.list
 # apt update
 ```
+
+**NEXT:** [Wazuh Agent Installation](../wazuh-agent-setup)
