@@ -22,6 +22,7 @@ This process will go through the installation of the **Kibana** in a 2 GB RAM **
 ```shell
 # apt update
 ```
+
 ### Kibana installation and configuration
 1. Install the Kibana package:
 ```shell
@@ -120,6 +121,7 @@ hosts:
 # systemctl status kibana
 ```
 Access the web interface by url http://10.0.2.0:8080
+
 ### Disabling Kibana repositories
 It is recommended to disabling the Kibana repository to prevent accidental upgrades. To do so, use the following command:
 ```shell
