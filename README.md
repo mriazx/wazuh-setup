@@ -13,7 +13,8 @@ Wazuh is a free, open source and enterprise-ready security monitoring solution f
 
 We will deploy a basic wazuh **SIEM** solution in VirtualBox as bleow.
 
-![Basic Wazuh Workflow](https://github.com/mriazx/wazuh-setup/blob/main/basic-wazuh-workflow.png)
+![basic-wazuh-workflow](https://user-images.githubusercontent.com/79780921/129677319-ea0f0cd4-cfb9-4c57-a7a8-59c78fdf2a9d.png)
+
 
 ## Workflow
 **Wazuh Manager** collects logs from **Wazuh Agents**. **Filebeat** then sends logs from **Wazuh Manager** to **Elasticsearch**. **Kibana Dashboard** visualize the logs from **Elasticsearch**. In this diployment, we'll use following nodes.
