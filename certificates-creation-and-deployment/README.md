@@ -1,6 +1,6 @@
 ### Configure Elasticsearch certificate
 1. The instances file can be created `/usr/share/elasticsearch/instances.yml` as follows:
-```shell
+```bash
 # nano /usr/share/elasticsearch/instances.yml
 ```
   The file should like:
@@ -104,7 +104,7 @@ Changed password for user [elastic]
 ```
 
 ### Configure Filebeat certificate
-  In previous section we copy `~/certs/ca` and `~certs/filebeat` to **Filebeat** deployment. The files must be copied into the **Wazuh Manager's** user home directory(`/home/<user>`).
+  In previous section we copy `~/certs/ca` and `~certs/filebeat` to **Filebeat** deployment. The files must be copied into the **Wazuh Manager's** user home directory(`~/`).
 1. Create the directory `/etc/filebeat/certs`, and then copy the certificate authorities, the certificate and key there:
 ```shell
 $ sudo mkdir /etc/filebeat/certs/ca -p
@@ -116,10 +116,9 @@ $ sudo chmod 400 /etc/filebeat/certs/ca/ca.* /etc/filebeat/certs/filebeat.*
 ```shell
 $ sudo nano /etc/filebeat/filebeat.yml
 ```
-
 Replace `elasticsearch_password` with the password we generated above and update protocol to 'https' from 'http'. Then uncomment authentication and certification. Updated file should like this:
 
-```yml
+```shell
 # Wazuh - Filebeat configuration file
 output.elasticsearch.hosts: 10.0.2.11:9200
 output.elasticsearch.password: pA$$w0rd
@@ -151,8 +150,9 @@ $ sudo systemctl restart filebeat
 ```shell
 # sudo filebeat test output
 ```
-  The output should like:
-```shell
+The output should like:
+
+```bash
 elasticsearch: https://10.0.2.11:9200...
   parse url... OK
   connection...
@@ -169,3 +169,49 @@ elasticsearch: https://10.0.2.11:9200...
   version: 7.11.2
 ```
 
+### Configure Kibana certificate
+  In previous section we copy `~/certs/ca` and `~certs/kibana` to **Kibana** deployment. The files must be copied into the **Kibana's** user home directory(`~/`).
+1. Create the directory `/etc/kibana/certs`, and then copy the certificate authorities, the certificate and key there:
+```shell
+$ sudo mkdir /etc/kibana/certs/ca -p
+$ sudo cp -R ~/certs/ca/ ~/certs/kibana/* /etc/kibana/certs/
+$ sudo chmod -R 500 /etc/kibana/certs
+$ sudo chmod 400 /etc/kiana/certs/ca/ca.* /etc/kibana/certs/kibana.*
+```
+2. Edit the file `/etc/kibana/kibana.yml`:
+```shell
+$ sudo nano /etc/kibana/kibana.yml
+```
+Update `server.port` with `443`and `elasticsearch.hosts` with `https`. Replace `elasticsearch_password` with the password we generated above. Uncomment all other sections. Updated file should like this:
+
+```bash
+server.host: 10.0.2.10
+server.port: 8080
+elasticsearch.hosts: http://10.0.2.11:9200
+elasticsearch.password: <elasticsearch_password>
+
+# Elasticsearch from/to Kibana
+
+elasticsearch.ssl.certificateAuthorities: /etc/kibana/certs/ca/ca.crt
+elasticsearch.ssl.certificate: /etc/kibana/certs/kibana.crt
+elasticsearch.ssl.key: /etc/kibana/certs/kibana.key
+
+# Browser from/to Kibana
+server.ssl.enabled: true
+server.ssl.certificate: /etc/kibana/certs/kibana.crt
+server.ssl.key: /etc/kibana/certs/kibana.key
+
+# Elasticsearch authentication
+xpack.security.enabled: true
+elasticsearch.username: elastic
+uiSettings.overrides.defaultRoute: "/app/wazuh"
+elasticsearch.ssl.verificationMode: certificate
+```
+3. Restart the Kibana service:
+```bash
+$ sudo systemctl restart Kibana
+```
+4. To ensure that Filebeat has been successfully installed, run the following command:
+```bash
+# sudo systemctl status Kibana
+```
