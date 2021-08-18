@@ -21,16 +21,15 @@ We will deploy a basic wazuh **SIEM** solution in VirtualBox as bleow.
 
 | Deployment | OS | RAM |
 |------------ | ------------- | ----- |
-|Wazuh Agent-1 | Kali Linux | 2 GB |
-|Wazuh Agent-2 | Ubuntu Server 20.04 | 1 GB|
-|Wazuh Agent-3 | Windows XP | 512 MB|
 |Wazuh Manager & Filebeat | Ubuntu Server 20.04 | 1 GB|
 |Elasticsearch | Ubuntu Server 20.04 | 1GB|
-|Kibana Dashboard | Kali Linux | 2 GB|
+|Kibana Dashboard & Wazuh Agent-1 | Kali Linux | 2 GB|
+|Wazuh Agent-2 | Ubuntu Server 20.04 | 1 GB|
+|Wazuh Agent-3 | Windows XP | 512 MB|
 
 In this deployment same Kali Linux used for agent-1 and Kibana.
 
-#### The setep-by-step deployment procedures are described below.
+#### The step-by-step deployment procedures are described below.
 - [Wazuh Manager Setup](./wazuh-manager-setup)
 
 - [Elasticsearch Setup](./elasticsearch-setup)
