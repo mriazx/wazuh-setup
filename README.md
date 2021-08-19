@@ -41,3 +41,6 @@ In this deployment same Kali Linux used for agent-1 and Kibana.
 - [Wazuh Agent Setup](./wazuh-agent-setup)
 
 - [Certificates Creation and Deployment](./certificates-creation-and-deployment)
+
+## Source
+https://documentation.wazuh.com/current/index.html
