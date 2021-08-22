@@ -129,4 +129,4 @@ It is recommended to disabling the Kibana repository to prevent accidental upgra
 # apt update
 ```
 
-**NEXT:** [Wazuh Agent Installation](../wazuh-agent-setup)
+**NEXT:** [Wazuh Agent Installation](./wazuh-agent-setup.md)
