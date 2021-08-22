@@ -122,4 +122,4 @@ It is recommended to disabling the Filebeat repository to prevent accidental upg
 # apt update
 ```
 
-**NEXT:** [Kibana Installation](../kibana-setup)
+**NEXT:** [Kibana Installation](./kibana-setup.md)
