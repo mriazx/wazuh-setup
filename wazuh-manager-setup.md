@@ -70,4 +70,4 @@ ss -lntp
 # tail -f /var/ossec/logs/alerts/alerts.log
 ```
 
-**NEXT:** [Elasticsearch Installation](../elasticsearch-setup.md)
+**NEXT:** [Elasticsearch Installation](./elasticsearch-setup.md)
